@@ -2,7 +2,7 @@ from django.urls import reverse_lazy
 from django.views.generic import CreateView, DeleteView, ListView, UpdateView
 
 from product.forms import PhoneForm, PhoneUpdateForm
-from product.models.product import Phone
+from product.models import Phone
 
 
 class PhoneListView(ListView):
@@ -30,3 +30,5 @@ class PhoneUpdateView(UpdateView):
 class PhoneDeleteView(DeleteView):
     model = Phone
     success_url = reverse_lazy("phone_list")
+
+

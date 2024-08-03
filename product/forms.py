@@ -1,6 +1,6 @@
 from django import forms
 
-from product.models.product import Phone
+from product.models import Phone
 
 
 class PhoneForm(forms.ModelForm):
@@ -15,3 +15,5 @@ class PhoneUpdateForm(forms.ModelForm):
     class Meta:
         model = Phone
         fields = ["model", "price", "status", "inventory", "color"]
+
+

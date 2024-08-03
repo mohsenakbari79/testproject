@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from product.models.product import Brand, Phone, Product
+from product.models import Brand, Phone, Product
 
 # Register your models here.
 
