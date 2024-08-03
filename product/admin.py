@@ -8,7 +8,7 @@ from product.models.product import Brand, Phone, Product
 class ProductAdmin(admin.ModelAdmin):
     list_display = ("model", "brand")
     list_filter = ("status", "brand", "contry")
-    search_fields = "model"
+    search_fields = ("model",)
 
 
 admin.site.register(Product, ProductAdmin)
@@ -16,7 +16,7 @@ admin.site.register(Product, ProductAdmin)
 
 class BrandAdmin(admin.ModelAdmin):
     list_display = ("name", "nationality")
-    search_fields = "name"
+    search_fields = ("name",)
 
 
 admin.site.register(Brand, BrandAdmin)

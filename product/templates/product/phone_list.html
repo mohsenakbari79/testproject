@@ -1,0 +1,59 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+   <title>Show Page</title>
+{% endblock %}
+
+{% block content %}
+<center><h1>Show Phone</h1></center>
+<table class="table">
+   <thead>
+     <tr>
+       <th scope="col">Model</th>
+       <th scope="col">Brand</th>
+       <th scope="col">Price</th>
+       <th scope="col">Contry</th>
+       <th scope="col">Status</th>
+       <th scope="col">Inventory</th>
+       <th scope="col">Color</th>
+       <th scope="col">Actions</th>
+     </tr>
+   </thead>
+   <tbody>
+   {% for i in object_list %}
+     <tr>
+       <td>{{i.model}}</td>
+       <td>{{i.brand}}</td>
+       <td>{{i.price}}</td>
+       <td>{{i.contry}}</td>
+       <td>{{i.status}}</td>
+       <td>{{i.color}}</td>
+       <td>{{i.inventory}}</td>
+       <td>
+           <button class="btn btn-warning"><a href="{% url 'update_url' i.pk %}">Update</a></button>&nbsp;&nbsp;
+           <button class="btn btn-danger"><a href="{% url 'delete_url' i.pk %}">Delete</a></button>
+       </td>
+     </tr>
+   {% endfor %}
+   </tbody>
+   
+ </table>
+ <div class="pagination justify-content-center">
+  <span class="step-links">
+      {% if page_obj.has_previous %}
+          <a class="page-item page-item" href="?page=1">&laquo; first</a>
+          <a class="page-item page-item" href="?page={{ page_obj.previous_page_number }}">previous</a>
+      {% endif %}
+
+      <span class="current">
+          Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+      </span>
+
+      {% if page_obj.has_next %}
+          <a class="page-item page-item"   href="?page={{ page_obj.next_page_number }}">next</a>
+          <a  class="page-item page-item"href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+      {% endif %}
+  </span>
+</div>
+
+{% endblock %}
