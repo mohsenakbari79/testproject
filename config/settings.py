@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     
     # my app
     'product.apps.ProductConfig',
+    'transaction.apps.TransactionConfig',
     
     # template
     'crispy_forms',

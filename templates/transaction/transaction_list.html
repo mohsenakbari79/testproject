@@ -5,30 +5,24 @@
 {% endblock %}
 
 {% block content %}
-<center><h1>Show Phone</h1></center>
+<center><h1>Show transaction</h1></center>
 <table class="table">
    <thead>
      <tr>
-       <th scope="col">Model</th>
-       <th scope="col">Brand</th>
-       <th scope="col">Price</th>
-       <th scope="col">Contry</th>
-       <th scope="col">Status</th>
-       <th scope="col">Color</th>
-       <th scope="col">Inventory</th>
+       <th scope="col">product</th>
+       <th scope="col">inventory</th>
+       <th scope="col">entrance</th>
+       <th scope="col">transaction_time</th>
        <th scope="col">Actions</th>
      </tr>
    </thead>
    <tbody>
-   {% for i in object_list %}
+   {% for i in transactions %}
      <tr>
-       <td>{{i.model}}</td>
-       <td>{{i.brand}}</td>
-       <td>{{i.price}}</td>
-       <td>{{i.contry}}</td>
-       <td>{{i.status}}</td>
-       <td>{{i.color}}</td>
+       <td>{{i.product}}</td>
        <td>{{i.inventory}}</td>
+       <td>{{i.entrance}}</td>
+       <td>{{i.transaction_time}}</td>
        <td>
            <button class="btn btn-warning"><a href="{% url 'update_url' i.pk %}">Update</a></button>&nbsp;&nbsp;
            <button class="btn btn-danger"><a href="{% url 'delete_url' i.pk %}">Delete</a></button>
