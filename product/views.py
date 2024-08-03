@@ -1,14 +1,13 @@
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, DeleteView, ListView, UpdateView
 
+from product.forms import PhoneForm, PhoneUpdateForm
 from product.models.product import Phone
-
-from .forms import PhoneForm
 
 
 class PhoneListView(ListView):
     model = Phone
-    paginate_by = 2
+    paginate_by = 10
 
     def get_queryset(self):
         phones = Phone.objects.filter(status=True)
@@ -23,7 +22,7 @@ class PhoneCreateView(CreateView):
 
 class PhoneUpdateView(UpdateView):
     model = Phone
-    fields = ["price", "status", "inventory", "color"]
+    form_class = PhoneUpdateForm
     success_url = reverse_lazy("phone_list")
 
 
