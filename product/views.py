@@ -10,8 +10,22 @@ class PhoneListView(ListView):
     paginate_by = 10
 
     def get_queryset(self):
-        phones = Phone.objects.filter(status=True)
-        return phones
+        queryset = super().get_queryset()
+        model_query = self.request.GET.get("model")
+        brand_query = self.request.GET.get("brand")
+        nationality_query = self.request.GET.get("nationality")
+        self_sufficient = self.request.GET.get("self_sufficiency")
+        if model_query:
+            queryset = queryset.filter(model__icontains=model_query)
+        if brand_query:
+            queryset = queryset.filter(brand__name__icontains=brand_query)
+        if nationality_query:
+            queryset = queryset.filter(brand__nationality=nationality_query)
+        if self_sufficient:
+            if self_sufficient.isdigit() and int(self_sufficient) == 1:
+                queryset = queryset.filter(contry=F("brand__nationality"))
+
+        return queryset
 
 
 class PhoneCreateView(CreateView):
